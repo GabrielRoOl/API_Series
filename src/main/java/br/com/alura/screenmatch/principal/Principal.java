@@ -6,10 +6,8 @@ import br.com.alura.screenmatch.model.DadosTemporada;
 import br.com.alura.screenmatch.service.ConsumoApi;
 import br.com.alura.screenmatch.service.ConverteDados;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Principal {
 
@@ -23,44 +21,51 @@ public class Principal {
 
     public void exibeMenuI(){
 
-//        System.out.print("Digite o nome da série para busca: ");
+        System.out.print("Digite o nome da série para busca: ");
+
+        var nomeSerie = sc.nextLine();
+
+        var json = consumo.obterDados(ENDERECO + nomeSerie.replace(" ", "+") + API_KEY);
+
+        DadosSerie dados = converte.obterDados(json, DadosSerie.class);
+        System.out.println(dados + "\n");
+
+        List<DadosTemporada> temporada = new ArrayList<>();
+
+        for (int i = 1; i <= dados.totalTemporadas(); i++){
+            json = consumo.obterDados(ENDERECO + nomeSerie.replace(" ", "+") + "&season=" + i + API_KEY);
+            DadosTemporada dadosTemporada = converte.obterDados(json, DadosTemporada.class);
+            temporada.add(dadosTemporada);
+        }
+        temporada.forEach(System.out::println);
+        System.out.println();
+
+//        for(int i = 0; i < dados.totalTemporadas(); i++){
+//            List<DadosEpisodios> episodiosTemporada = temporada.get(i).episodios();
 //
-//        var nomeSerie = sc.nextLine();
-//
-//        var json = consumo.obterDados(ENDERECO + nomeSerie.replace(" ", "+") + API_KEY);
-//
-//        DadosSerie dados = converte.obterDados(json, DadosSerie.class);
-//        System.out.println(dados + "\n");
-//
-//        List<DadosTemporada> temporada = new ArrayList<>();
-//
-//        for (int i = 1; i <= dados.totalTemporadas(); i++){
-//            json = consumo.obterDados(ENDERECO + nomeSerie.replace(" ", "+") + "&season=" + i + API_KEY);
-//            DadosTemporada dadosTemporada = converte.obterDados(json, DadosTemporada.class);
-//            temporada.add(dadosTemporada);
+//            System.out.println("Temporada " + (i + 1));
+//            for(int j = 0; j < episodiosTemporada.size(); j++){
+//                System.out.println(episodiosTemporada.get(j).titulo());
+//            } System.out.println();
 //        }
-//        temporada.forEach(System.out::println);
-//        System.out.println();
-//
-////        for(int i = 0; i < dados.totalTemporadas(); i++){
-////            List<DadosEpisodios> episodiosTemporada = temporada.get(i).episodios();
-////
-////            System.out.println("Temporada " + (i + 1));
-////            for(int j = 0; j < episodiosTemporada.size(); j++){
-////                System.out.println(episodiosTemporada.get(j).titulo());
-////            } System.out.println();
-////        }
-//
-//        temporada.forEach(t -> t.episodios().forEach(e -> System.out.println(e.titulo())));
-//
-//        temporada.forEach(System.out::println);
 
-        List<String> nomes = Arrays.asList("Gabriel", "Alamir", "Adriane", "Daniel");
+        temporada.forEach(t -> t.episodios().forEach(e -> System.out.println(e.titulo())));
 
-        nomes.stream().sorted()
-                .limit(2)
-                .filter(n -> n.startsWith("A"))
-                .map(n -> n.toUpperCase())
+        List<String> nomes = Arrays.asList("Gabriel", "Daniel", "Alamir", "Adriane", "Taynara");
+
+//        nomes.stream().sorted().limit(3).filter(n -> n.startsWith("N"))
+//                .map(n -> n.toUpperCase())
+//                .forEach(System.out::println);
+
+        List<DadosEpisodios> dadosEpisodios = temporada.stream()
+                .flatMap(t -> t.episodios().stream())
+                .collect(Collectors.toList());
+
+        System.out.println("\nTop 5 epsodios.");
+        dadosEpisodios.stream()
+                .filter(e -> !e.avaliacao().equalsIgnoreCase("N/A"))
+                .sorted(Comparator.comparing(DadosEpisodios::avaliacao).reversed())
+                .limit(5)
                 .forEach(System.out::println);
 
 
