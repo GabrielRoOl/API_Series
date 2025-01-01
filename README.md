@@ -11,6 +11,6 @@ Projeto desenvolvido no primeiro curso da formação Avançando com Java da Alur
 - Modelar as abstraçoes da aplicação através de records, classes, atributos e métodos;
 - Consumir uma API para buscar os dados de séries, temporadas e episódios;
 - Trabalhar com coleções e entender a fundo o uso das funções lambdas;
-- Conhecer a API de Streams e aplicar operações intermediárias como filter, sorted, map, flatMap, peek, entre outras;
+- Conhecer a API de Streams e aplicar operações intermediárias como filter, sorted, map, flatMap, peek, forEach, isAfter, entre outras;
 - Transformar streams em novas listas e mapas;
 - Gerar estatísticas personalizadas na aplicação.
