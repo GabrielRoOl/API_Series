@@ -1,19 +1,37 @@
 package br.com.alura.screenmatch.model;
 
+import jakarta.persistence.*;
+
 /**
  * Representa uma série com informações detalhadas como título, número de temporadas,
  * avaliação, gênero, elenco, e outros dados provenientes da API OMDB.
  */
+
+@Entity
+@Table(name = "series")
 public class Serie {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "titulo", unique = true, nullable = false)
     private String titulo;
+    @Column(name = "numero_temporadas")
     private Integer totalTemporadas;
     private Double avaliacao;
     private String escritor;
-    private Categoria genero;
     private String atores;
     private String poster;
     private String sinopse;
+
+    @Enumerated(EnumType.STRING)
+    private Categoria genero;
+    @Column(name = "linguagem")
+    @Enumerated(EnumType.STRING)
     private CategoriaLinguagem lingua;
+
+    public Serie(){
+    }
 
     public Serie(DadosSerie dadosSerie){
         this.titulo = dadosSerie.titulo();
@@ -40,6 +58,14 @@ public class Serie {
         } catch (NumberFormatException e) {
             return 0.0;
         }
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getAtores() {
