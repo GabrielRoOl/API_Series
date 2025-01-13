@@ -4,7 +4,7 @@
 # Java: Trabalhando com Lambdas, Streams e Spring Framework
 Projeto desenvolvido no primeiro curso da formação Avançando com Java da Alura
 
-## 🔨 objetivod do Projeto
+## 🔨 objetivo do Projeto
 - Criar o projeto ScreenMatch desde o início já utilizando o Spring Framework, inicialmente com linha de comando;
 - Utilizar o Maven como gerenciador de dependências;
 - Utilizar o Jackson para desserialização dos dados;

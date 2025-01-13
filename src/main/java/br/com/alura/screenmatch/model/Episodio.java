@@ -1,5 +1,7 @@
 package br.com.alura.screenmatch.model;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeParseException;
@@ -8,13 +10,23 @@ import java.time.format.DateTimeParseException;
  * temporada, data de lançamento e avaliação.
  * A instância é construída com base nos dados recebidos da API OMDB.
  */
+@Entity
+@Table(name = "episodios")
 public class Episodio {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private Integer temporada;
     private String titulo;
+    @Column(name = "numero_episodio")
     private Integer numeroEpisodio;
     private Double avaliacao;
+    @Column(name = "data_lancamento")
     private LocalDate dataLancamento;
+
+    @ManyToOne
+    private Serie series;
 
     public Episodio(Integer numeroTemporada, DadosEpisodios dadosEpisodios) {
         this.temporada = numeroTemporada;
@@ -48,6 +60,22 @@ public class Episodio {
         } catch (DateTimeParseException e) {
             return null; // Indica que a data é inválida
         }
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Serie getSeries() {
+        return series;
+    }
+
+    public void setSeries(Serie series) {
+        this.series = series;
     }
 
     public Integer getTemporada() {

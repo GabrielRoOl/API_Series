@@ -1,15 +1,16 @@
 package br.com.alura.screenmatch.principal;
 
-import br.com.alura.screenmatch.model.*;
+import br.com.alura.screenmatch.model.DadosSerie;
+import br.com.alura.screenmatch.model.DadosTemporada;
+import br.com.alura.screenmatch.model.Serie;
 import br.com.alura.screenmatch.repository.SerieRepository;
 import br.com.alura.screenmatch.service.ConsumoApi;
 import br.com.alura.screenmatch.service.ConverteDados;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Scanner;
 
 public class Principal {
     private Scanner sc = new Scanner(System.in);
@@ -28,7 +29,7 @@ public class Principal {
     }
 
 
-    public void exibeMenu(){
+    public void exibeMenu() {
 
         var menu = """
                 1 - Buscar séries
@@ -39,7 +40,7 @@ public class Principal {
                 """;
         var opcao = -1;
 
-        while(opcao != 0){
+        while (opcao != 0) {
             System.out.println(menu);
             opcao = sc.nextInt();
             sc.nextLine();
@@ -61,20 +62,13 @@ public class Principal {
                     System.out.println("Opção inválida");
             }
         }
-
-
-
     }
 
     private void listarSeriesBuscadas() {
-        List<Serie> series = new ArrayList<>();
-        series = dadosSeries.stream()
-                        .map(d -> new Serie(d))
-                                .collect(Collectors.toList());
+        List<Serie> series = serieRepository.findAll();
         series.stream()
                 .sorted(Comparator.comparing(Serie::getGenero))
                 .forEach(System.out::println);
-
     }
 
     private void buscarSerieWeb() {
@@ -94,7 +88,7 @@ public class Principal {
         return dados;
     }
 
-    private void buscarEpisodioPorSerie(){
+    private void buscarEpisodioPorSerie() {
         DadosSerie dadosSerie = getDadosSerie();
         List<DadosTemporada> temporadas = new ArrayList<>();
 

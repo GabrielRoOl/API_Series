@@ -33,13 +33,13 @@ public class Serie {
     @Enumerated(EnumType.STRING)
     private CategoriaLinguagem lingua;
 
-    @Transient
+    @OneToMany(mappedBy = "series")
     List<Episodio> episodioList = new ArrayList<>();
 
-    public Serie(){
+    public Serie() {
     }
 
-    public Serie(DadosSerie dadosSerie){
+    public Serie(DadosSerie dadosSerie) {
         this.titulo = dadosSerie.titulo();
         this.totalTemporadas = dadosSerie.totalTemporadas();
         this.avaliacao = parseAvaliacao(dadosSerie.avaliacao());
@@ -66,8 +66,8 @@ public class Serie {
         return Categoria.fromString(genero.split(",")[0].trim()); // Para pegar apenas o primeiro genero
     }
 
-    public Double parseAvaliacao(String avaliacao){
-        try{
+    public Double parseAvaliacao(String avaliacao) {
+        try {
             return Double.valueOf(avaliacao);
         } catch (NumberFormatException e) {
             return 0.0;
@@ -156,7 +156,7 @@ public class Serie {
 
     @Override
     public String toString() {
-        return  "genero=" + genero +
+        return "genero=" + genero +
                 ", atores='" + atores + '\'' +
                 ", titulo='" + titulo + '\'' +
                 ", totalTemporadas=" + totalTemporadas +
