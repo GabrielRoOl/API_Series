@@ -13,4 +13,9 @@ Projeto desenvolvido no primeiro curso da formação Avançando com Java da Alur
 - Trabalhar com coleções e entender a fundo o uso das funções lambdas;
 - Conhecer a API de Streams e aplicar operações intermediárias como filter, sorted, map, flatMap, peek, forEach, isAfter, entre outras;
 - Transformar streams em novas listas e mapas;
-- Gerar estatísticas personalizadas na aplicação.
+- Gerar estatísticas personalizadas na aplicação;
+- Modelar as abstrações da aplicação através de classes, enums, atributos e métodos;
+- Utilizar o Spring Data JPA para persistir dados no banco;
+- Conhecer vários tipos de banco de dados e utilizar o PostgreSQL;
+- Trabalhar com vários tipos de consultas ao banco de dados;
+- Aprofundar na interface JPARepository.
