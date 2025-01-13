@@ -1,8 +1,5 @@
 package br.com.alura.screenmatch.model;
 
-import jdk.jfr.Category;
-
-import java.util.OptionalDouble;
 /**
  * Representa uma série com informações detalhadas como título, número de temporadas,
  * avaliação, gênero, elenco, e outros dados provenientes da API OMDB.
@@ -29,6 +26,7 @@ public class Serie {
         this.atores = dadosSerie.atores();
         this.poster = dadosSerie.poster();
         this.sinopse = dadosSerie.sinopse();
+        //this.sinopse = ConsultaChatGPT.obterTraducao(dadosSerie.sinopse()).trim();
         this.lingua = CategoriaLinguagem.fromString(dadosSerie.lingua());
     }
 
