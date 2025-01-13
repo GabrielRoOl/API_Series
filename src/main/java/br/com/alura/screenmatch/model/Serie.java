@@ -2,6 +2,9 @@ package br.com.alura.screenmatch.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Representa uma série com informações detalhadas como título, número de temporadas,
  * avaliação, gênero, elenco, e outros dados provenientes da API OMDB.
@@ -30,6 +33,9 @@ public class Serie {
     @Enumerated(EnumType.STRING)
     private CategoriaLinguagem lingua;
 
+    @Transient
+    List<Episodio> episodioList = new ArrayList<>();
+
     public Serie(){
     }
 
@@ -46,6 +52,14 @@ public class Serie {
         this.sinopse = dadosSerie.sinopse();
         //this.sinopse = ConsultaChatGPT.obterTraducao(dadosSerie.sinopse()).trim();
         this.lingua = CategoriaLinguagem.fromString(dadosSerie.lingua());
+    }
+
+    public List<Episodio> getEpisodioList() {
+        return episodioList;
+    }
+
+    public void setEpisodioList(List<Episodio> episodioList) {
+        this.episodioList = episodioList;
     }
 
     private Categoria parseGenerio(String genero) {

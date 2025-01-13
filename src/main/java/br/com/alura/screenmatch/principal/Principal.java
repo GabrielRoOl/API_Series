@@ -1,8 +1,10 @@
 package br.com.alura.screenmatch.principal;
 
 import br.com.alura.screenmatch.model.*;
+import br.com.alura.screenmatch.repository.SerieRepository;
 import br.com.alura.screenmatch.service.ConsumoApi;
 import br.com.alura.screenmatch.service.ConverteDados;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -10,7 +12,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Principal {
-
     private Scanner sc = new Scanner(System.in);
     private ConsumoApi consumo = new ConsumoApi();
     private ConverteDados converte = new ConverteDados();
@@ -19,6 +20,12 @@ public class Principal {
     private final String API_KEY = "&apikey=2def0c3f";
 
     private List<DadosSerie> dadosSeries = new ArrayList<>();
+
+    private SerieRepository serieRepository;
+
+    public Principal(SerieRepository serieRepository) {
+        this.serieRepository = serieRepository;
+    }
 
 
     public void exibeMenu(){
@@ -72,8 +79,11 @@ public class Principal {
 
     private void buscarSerieWeb() {
         DadosSerie dados = getDadosSerie();
-        dadosSeries.add(dados);
+        Serie serie = new Serie(dados);
+        //dadosSeries.add(dados);
+        serieRepository.save(serie);
         System.out.println(dados);
+        System.out.println("Série salva com sucesso: " + serie.getTitulo().toUpperCase());
     }
 
     private DadosSerie getDadosSerie() {
