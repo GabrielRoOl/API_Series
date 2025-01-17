@@ -37,6 +37,7 @@ public class Principal {
                 2 - Buscar episódios
                 3 - Listar séries buscadas
                 4 - Buscar série por título
+                5 - Buscar séries por ator e avaliação mínima
                 
                 0 - Sair
                 """;
@@ -60,6 +61,9 @@ public class Principal {
                 case 4:
                     buscarSeriePorTitulo();
                     break;
+                case 5:
+                    buscarSeriePorAtor();
+                    break;
                 case 0:
                     System.out.println("Saindo...");
                     break;
@@ -67,6 +71,36 @@ public class Principal {
                     System.out.println("Opção inválida");
             }
         }
+    }
+
+    private void buscarSeriePorAtor() {
+        System.out.print("Nome para busca: ");
+        var nomeAutor = sc.nextLine();
+        if(nomeAutor.isEmpty()){
+            System.out.println("O nome do autor não pode ser vazio.");
+            return;
+        }
+        System.out.print("Avaliações a partir de qual valor: ");
+        if(!sc.hasNextDouble()){
+            System.out.println("Favor, insira um valor numérioc válido para avaliação.");
+            sc.next();
+            return;
+        }
+        var avaliacaoAtor = sc.nextDouble();
+
+        List<Serie> seriesEncontradas = serieRepository.
+                findByAtoresContainingIgnoreCaseAndAvaliacaoGreaterThanEqual(nomeAutor, avaliacaoAtor);
+
+        if(seriesEncontradas.isEmpty()){
+            System.out.println("Nenhuma série com o ator " + nomeAutor + " e avaliação acima de " + avaliacaoAtor +
+                    " foram encontradas.");
+        }else{
+            System.out.println("Series em que " + nomeAutor + " trabalhou: ");
+            seriesEncontradas.forEach(s -> System.out.println(s.getTitulo() + " Avaliação geral da série: "
+                    + s.getAvaliacao()));
+        }
+
+        System.out.println();
     }
 
     private void buscarSeriePorTitulo() {
