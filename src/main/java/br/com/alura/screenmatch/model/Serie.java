@@ -33,7 +33,7 @@ public class Serie {
     @Enumerated(EnumType.STRING)
     private CategoriaLinguagem lingua;
 
-    @OneToMany(mappedBy = "series", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "series", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     List<Episodio> episodioList = new ArrayList<>();
 
     public Serie() {
@@ -51,7 +51,11 @@ public class Serie {
         this.poster = dadosSerie.poster();
         this.sinopse = dadosSerie.sinopse();
         //this.sinopse = ConsultaChatGPT.obterTraducao(dadosSerie.sinopse()).trim();
-        this.lingua = CategoriaLinguagem.fromString(dadosSerie.lingua());
+        this.lingua = parseLingua(dadosSerie.lingua());
+    }
+
+    private CategoriaLinguagem parseLingua(String categoriaLinguagem) {
+        return CategoriaLinguagem.fromString(categoriaLinguagem.split(",")[0].trim());
     }
 
     public List<Episodio> getEpisodioList() {
@@ -62,6 +66,7 @@ public class Serie {
         episodioList.forEach(e -> e.setSeries(this));
         this.episodioList = episodioList;
     }
+
 
     private Categoria parseGenerio(String genero) {
         return Categoria.fromString(genero.split(",")[0].trim()); // Para pegar apenas o primeiro genero
@@ -165,6 +170,7 @@ public class Serie {
                 ", escritor='" + escritor + '\'' +
                 ", poster='" + poster + '\'' +
                 ", sinopse='" + sinopse + '\'' +
-                ", lingua=" + lingua;
+                ", lingua=" + lingua + '\'' +
+                ", episodios=" + episodioList;
     }
 }
