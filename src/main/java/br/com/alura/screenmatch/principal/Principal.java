@@ -38,6 +38,7 @@ public class Principal {
                 3 - Listar séries buscadas
                 4 - Buscar série por título
                 5 - Buscar séries por ator e avaliação mínima
+                6 - Top 5 séries com melhor avaliação
                 
                 0 - Sair
                 """;
@@ -64,6 +65,9 @@ public class Principal {
                 case 5:
                     buscarSeriePorAtor();
                     break;
+                case 6:
+                    buscarTop5Series();
+                    break;
                 case 0:
                     System.out.println("Saindo...");
                     break;
@@ -71,6 +75,19 @@ public class Principal {
                     System.out.println("Opção inválida");
             }
         }
+    }
+
+    private void buscarTop5Series() {
+        List<Serie> buscaTop = serieRepository.findTop5ByOrderByAvaliacaoDesc();
+        if(buscaTop.isEmpty()){
+            System.out.println("Nenhuma série encontrada para exibir o Top 5.");
+        }else {
+            System.out.println("Top 5 séries com melhor avaliação: ");
+            buscaTop.forEach(s ->
+                    System.out.println(s.getTitulo().toUpperCase() +
+                            " avaliação: " + s.getAvaliacao()));
+        }
+        System.out.println();
     }
 
     private void buscarSeriePorAtor() {
