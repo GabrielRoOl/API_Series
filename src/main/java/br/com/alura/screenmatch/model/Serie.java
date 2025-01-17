@@ -33,7 +33,7 @@ public class Serie {
     @Enumerated(EnumType.STRING)
     private CategoriaLinguagem lingua;
 
-    @OneToMany(mappedBy = "series")
+    @OneToMany(mappedBy = "series", cascade = CascadeType.ALL)
     List<Episodio> episodioList = new ArrayList<>();
 
     public Serie() {
@@ -59,6 +59,7 @@ public class Serie {
     }
 
     public void setEpisodioList(List<Episodio> episodioList) {
+        episodioList.forEach(e -> e.setSeries(this));
         this.episodioList = episodioList;
     }
 
