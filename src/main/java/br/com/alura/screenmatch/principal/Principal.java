@@ -38,6 +38,7 @@ public class Principal {
                 6 - Top 5 séries com melhor avaliação
                 7 - Buscar séries pela categoria
                 8 - Filtrar séries
+                9 - Buscar episodio pro trecho
                 
                 0 - Sair
                 """;
@@ -73,6 +74,9 @@ public class Principal {
                 case 8:
                     filtrarSeriesPorTemporadaEAvaliacao();
                     break;
+                case 9:
+                    buscarEpisodioPorTrecho();
+                    break;
                 case 0:
                     System.out.println("Saindo...");
                     break;
@@ -81,6 +85,8 @@ public class Principal {
             }
         }
     }
+
+
 
     private void buscarSeriePorCategoria() {
         System.out.print("Deseja buscar séries de qual categoria/gênero?");
@@ -218,5 +224,14 @@ public class Principal {
 //      List<Serie> filtroSeries = serieRepository.findByTotalTemporadasLessThanEqualAndAvaliacaoGreaterThanEqual(totalTemporadas,avaliacao);
         System.out.println("*** Séries filtradas ***");
         filtroSeries.forEach(s -> System.out.println(s.getTitulo() + " - avaliação: " + s.getAvaliacao()));
+    }
+
+    private void buscarEpisodioPorTrecho() {
+        System.out.print("Qual o nome do episódio para busca? ");
+        var trechoEpisodio = sc.nextLine();
+        List<Episodio> episodiosEncontrados = serieRepository.episodiorPorTrecho(trechoEpisodio);
+        System.out.println("*** Episodio encontrado ***");
+        episodiosEncontrados.forEach(e -> System.out.println("Série: " + e.getSeries().getTitulo() + " Temporada: " +
+                e.getTitulo() + " - Episódio " + e.getNumeroEpisodio() + " - " + e.getTitulo()));
     }
 }
