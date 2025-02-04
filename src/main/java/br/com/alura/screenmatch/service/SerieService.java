@@ -20,4 +20,8 @@ public class SerieService {
         return result.stream().map(SerieDTO::new).collect(Collectors.toList());
     }
 
+    public List<SerieDTO> findTop5Series(){
+        List<Serie> result = serieRepository.findTop5ByOrderByAvaliacaoDesc();
+        return result.stream().map(SerieDTO::new).collect(Collectors.toList());
+    }
 }
