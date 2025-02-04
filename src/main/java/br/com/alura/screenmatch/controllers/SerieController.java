@@ -25,4 +25,9 @@ public class SerieController {
     public List<SerieDTO> findTop5Series(){
         return serieService.findTop5Series();
     }
+
+    @GetMapping(value = "/lancamentos")
+    public List<SerieDTO> findTop5Lancamento(){
+        return serieService.findByLancamento();
+    }
 }

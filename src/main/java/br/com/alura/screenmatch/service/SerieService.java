@@ -24,4 +24,9 @@ public class SerieService {
         List<Serie> result = serieRepository.findTop5ByOrderByAvaliacaoDesc();
         return result.stream().map(SerieDTO::new).collect(Collectors.toList());
     }
+
+    public List<SerieDTO> findByLancamento(){
+        List<Serie> resutl = serieRepository.findTop5ByOrderByEpisodioListDataLancamentoDesc();
+        return resutl.stream().map(SerieDTO::new).collect(Collectors.toList());
+    }
 }
