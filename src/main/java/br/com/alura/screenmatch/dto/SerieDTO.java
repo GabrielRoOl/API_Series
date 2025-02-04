@@ -2,6 +2,8 @@ package br.com.alura.screenmatch.dto;
 
 import br.com.alura.screenmatch.model.Serie;
 
+import java.util.Optional;
+
 public class SerieDTO {
     private Long id;
     private String titulo;
@@ -34,6 +36,10 @@ public class SerieDTO {
         this.sinopse = s.getPoster();
         this.titulo = s.getTitulo();
         this.totalTemporadas = s.getTotalTemporadas();
+    }
+
+    public SerieDTO(Optional<Serie> result) {
+        result.stream().map(SerieDTO::new);
     }
 
     public String getAtores() {
