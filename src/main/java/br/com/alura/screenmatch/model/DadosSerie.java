@@ -18,5 +18,4 @@ public record DadosSerie(
                 @JsonAlias("Poster") String poster,
                 @JsonAlias("Plot") String sinopse,
                 @JsonAlias("Language") String lingua) {
-
 }
