@@ -25,6 +25,4 @@ public class SerieController {
         return result.stream().map(SerieDTO::new).collect(Collectors.toList());
     }
 
-
-
 }
