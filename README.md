@@ -1,7 +1,4 @@
-![trabalhando com lambdas, streams e spring framework](https://github.com/user-attachments/assets/848d701d-2920-43b8-bad7-3b3779e069f1)
-
-
-# Java: Trabalhando com Lambdas, Streams e Spring Framework
+# Java: Trabalhando com Lambdas, Streams e Spring Framework, para desenvolver um API
 Projeto desenvolvido no primeiro curso da formação Avançando com Java da Alura
 
 ## 🔨 objetivo do Projeto
