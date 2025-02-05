@@ -1,4 +1,4 @@
-# Java: Trabalhando com Lambdas, Streams e Spring Framework, para desenvolver um API
+# Java: Trabalhando com Lambdas, Streams e Spring Framework, para desenvolver uma API
 Projeto desenvolvido no primeiro curso da formação Avançando com Java da Alura
 
 ## 🔨 objetivo do Projeto
