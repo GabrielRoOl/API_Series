@@ -35,7 +35,13 @@ public class SerieService {
 
     public SerieDTO findById(Long id) {
         Optional<Serie> result = serieRepository.findById(id);
-
         return result.map(SerieDTO::new).orElse(null);
     }
+
+    // Essa parte da aula, não foi necessara.
+
+//    public List<SerieDTO> lancamentosMaisRecentes(){
+//        List<Serie> result = serieRepository.lancamentosMaisRecentes();
+//        return result.stream().map(SerieDTO::new).toList();
+//    }
 }
