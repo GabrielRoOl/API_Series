@@ -1,6 +1,8 @@
 package br.com.alura.screenmatch.service;
 
+import br.com.alura.screenmatch.dto.EpisodioDTO;
 import br.com.alura.screenmatch.dto.SerieDTO;
+import br.com.alura.screenmatch.model.Episodio;
 import br.com.alura.screenmatch.model.Serie;
 import br.com.alura.screenmatch.repository.SerieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,4 +46,22 @@ public class SerieService {
 //        List<Serie> result = serieRepository.lancamentosMaisRecentes();
 //        return result.stream().map(SerieDTO::new).toList();
 //    }
+
+    public List<EpisodioDTO> getAllTemporadas(Long id){
+        Optional<Serie> result = serieRepository.findById(id);
+        if(result.isPresent()){
+            Serie s = result.get();
+            return s.getEpisodioList().stream().map(e ->
+                    new EpisodioDTO(e.getNumeroEpisodio(), e.getTemporada(), e.getTitulo()))
+                    .collect(Collectors.toList());
+        }
+        return null;
+    }
+
+    public List<EpisodioDTO> obterTemporadasPorNumero(Long id, Long numero) {
+        return serieRepository.obterEpisodiosPorTemporada(id, numero)
+                .stream()
+                .map(e -> new EpisodioDTO(e.getTemporada(), e.getNumeroEpisodio(), e.getTitulo()))
+                .collect(Collectors.toList());
+    }
 }
