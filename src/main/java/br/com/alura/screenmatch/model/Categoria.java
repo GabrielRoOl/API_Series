@@ -4,6 +4,7 @@ public enum Categoria {
     ACAO("Action", "Ação"),
     ROMANCE("Romance", "Romance"),
     COMEDIA("Comedy", "Comédia"),
+AVENTURA("Adventure", "Aventura"),
     DRAMA("Drama", "Drama"),
     CRIME("Crime", "Crime"),
     TERROR("Horror", "Horror"),
