@@ -1,24 +1,24 @@
-<h1 align="center" style="font-weight: bold;">API de Integração para Plataforma de Séries 💻</h1>
+<h1 id="top" align="center" style="font-weight: bold; ">Integration API for Series Platform 💻</h1>
 
-<p align="center">API desenvolvida como projeto de aprimoramento profissional, integrando com a API pública da IBM 
-  para criar um banco de dados completo de séries e filmes, com estrutura própria de episódios e temporadas.
+<p align="center">API developed as a professional development project, integrating with IBM's public API
+to create a comprehensive database of series and films, with its own episode and season structure.
 </p>
 
-<h3>🔍 Principais Funcionalidades: </h3>
+<h3>🔍 Main Features: </h3>
 
-- Consumo e processamento de dados da API publica da IBM
-- Armazenamento em banco de dados PostgreSQL
-- Endpoints RESTful para consulta
-- Gerenciamento de temporadas e episódios
-- Top 5 séries melhor avaliadas no banco de dados
-- Filtros por data de lançamento
+- Data consumption and processing from IBM's public API
+- Storage in a PostgreSQL database
+- RESTful endpoints for queries
+- Season and episode management
+- Top 5 highest-rated series in the database
+- Filters by release date
 
 <h3>🎯 Objetivos do Projeto:</h3>
 
-- Praticar a implementação de API com Java e Spring Boot
-- Implementar padrões de arquitetura MVC, POO, ORM e etc.
-- Desenvolver queries complexas em banco relacional
-- Criar documentação API completa
+- Practice API implementation with Java and Spring Boot
+- Implement MVC, OOP, ORM, and other architectural patterns
+- Develop complex queries in relational databases
+- Create comprehensive API documentation
 
 
 <p align="center">
@@ -26,7 +26,8 @@
  <a href="#started">Getting Started</a> • 
   <a href="#routes">API Endpoints</a> •
  <a href="#colab">Collaborators</a> •
- <a href="#contribute">Contribute</a>
+ <a href="#contribute">Contribute</a> •
+ <a href="#contact">Contact</a>
 </p>
 
 <h2 id="tech">💻 Technologies</h2>
@@ -47,8 +48,7 @@
 
 <h3> Prerequesites </h3>
 
-- [Java](https://www.java.com/en/download/manual.jsp)
-- [JDK](https://www.oracle.com/br/java/technologies/downloads)
+- [Java JDK 17+](https://www.java.com/en/download/manual.jsp)
 - [Spring boot](https://spring.io/projects/spring-boot)
 - [PosgreSQL](https://www.postgresql.org)
 
@@ -223,5 +223,45 @@ Here you can list the main routes of your API, and what are their expected reque
 
 <h2 id="colab">🤝 Collaborators</h2>
 
+### Developer
+- [**Gabriel Rodrigues**](github.com/GabrielRoOl) - Complete API development
+### Mentoring & Educational content
+- [Alura](https://www.alura.com.br) - Java/Spring Boot courses and training that supported the project
+
 
 <h2 id="contribute">Contribute</h2>
+
+This is a research project, but contributions are welcome! Here's the guide to participating:
+
+1. Fork the project
+2. Clone your fork locally:
+   ```bash
+   https://github.com/your_user/API_Series.git
+   ```
+3. Create a branch for your feature:
+   ```bash
+   git checkout -b your-feature
+   ```
+4. Commit your changes:
+   ```bash
+   git commit -m "feat: new feature"
+   ```
+5. Push to your branch:
+   ```bash
+   git push origin your-feature
+   ```
+
+<h2 id="contact">📮 Contact </h2>
+
+<br>
+<p align="center">
+ <a href="https://www.linkedin.com/in/gabrielrool">Linkedin</a> • 
+ <a href="https://github.com/GabrielRoOl">Github</a> • 
+  <a href="">61 9 91929185</a> •
+ <a href="">gabriel.ro.ol@hotmail.com</a> 
+</p>
+
+<p align="center">
+  <br>
+  <a href="#top">⬆️ Back to top</a>
+</p>
